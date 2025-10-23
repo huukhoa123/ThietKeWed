@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h3>Upload file để xem thông tin:</h3>
+    <input type="file" id="fileInput">
+    <p id="result"></p>
+    <script>
+        $(document).ready(function(){
+          $('#fileInput').change(function(){
+            let file = $(this).val().split('\\').pop()
+            let ext = file.split('.').pop()
+            $('#result').html('Tên file: <b>' + file + '</b><br>Phần mở rộng: <b>' + ext + '</b>')
+          })
+        })
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h3>Thông tin cá nhân</h3>
+
+    <p>Passport:</p>
+    <label><input type="radio" name="passport" value="yes"> Yes</label>
+    <label><input type="radio" name="passport" value="no"> No</label>
+    <div id="passportBox" style="display:none; margin-top:8px;">
+        <input type="text" placeholder="Nhập thông tin Passport">
+    </div>
+
+    <p>Credit Card:</p>
+    <label><input type="radio" name="credit" value="yes"> Yes</label>
+    <label><input type="radio" name="credit" value="no"> No</label>
+    <div id="creditBox" style="display:none; margin-top:8px;">
+        <input type="text" placeholder="Nhập thông tin Credit Card">
+    </div>
+
+<script>
+$(document).ready(function(){
+  $('input[name="passport"]').click(function(){
+    if($(this).val() === 'yes') $('#passportBox').show()
+    else $('#passportBox').hide()
+  })
+
+  $('input[name="credit"]').click(function(){
+    if($(this).val() === 'yes') $('#creditBox').show()
+    else $('#creditBox').hide()
+  })
+})
+</script>
+</body>
+</html>

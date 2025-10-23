@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+    <table id="sampleTable" border="1">
+    <tr>
+        <td>Row1 cell1</td>
+        <td>Row1 cell2</td>
+</tr>
+    <tr>
+        <td>Row2 cell1</td>
+        <td>Row2 cell2</td>
+    </tr>
+</table>
+    <br>  
+      <input type="button" onclick="insert_Row()" value="Insert row">
+    <script>
+        function insert_Row() {
+            var rowCount = $('#sampleTable tr').length +1; 
+            let newRow = $("<tr><td>Row" + rowCount + " cell1</td><td>Row" + rowCount + " cell2</td></tr>");
+            $("#sampleTable").append(newRow);
+        }
+</script>
+</body>
+</html>

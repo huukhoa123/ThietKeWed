@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <form>
+        Select your favorite Color :
+        <select id="mySelect">
+            <option>Red</option>
+            <option>Green</option>
+            <option>Blue</option>
+            <option>White</option>
+        </select>
+        <input type="button" id="getOptions" value="Count and Output all options">
+    </form>
+
+    <script>
+
+        $("#getOptions").click(function() {
+            const count  = $("#mySelect option").length;
+            const options = $("#mySelect option");
+            let text = "";
+
+            options.each(function() {
+                text += $(this).text() + " ";
+            });
+
+            alert("Có " + count + " danh sách: " + text);
+        });
+    </script>
+</body>
+</html>

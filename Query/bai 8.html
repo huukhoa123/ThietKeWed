@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Máy tính đơn giản dùng jQuery</title>
+
+    <!-- Thêm thư viện jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+    <table>
+        <tr>
+            <td>
+                <input type="text" id="so1">
+                <button id="tru">-</button>
+                <button id="cong">+</button>
+                <button id="nhan">*</button>
+                <button id="chia">/</button>
+                <input type="text" id="so2">
+                <span>=</span>
+                <input type="text" id="kq" >
+            </td>
+        </tr>
+    </table>
+    <script>
+        $(document).ready(function(){
+            function getValues() {
+                const a = parseFloat($("#so1").val());
+                const b = parseFloat($("#so2").val());
+                return { a, b };
+            }
+            $("#cong").click(function(){
+                const { a, b } = getValues();
+                $("#kq").val(a + b);
+            });
+
+            $("#tru").click(function(){
+                const { a, b } = getValues();
+                $("#kq").val(a - b);
+            });
+            $("#nhan").click(function(){
+                const { a, b } = getValues();
+                $("#kq").val(a * b);
+            });
+            $("#chia").click(function(){
+                const { a, b } = getValues();
+                if (b === 0) {
+                    alert("Không thể chia cho 0!");
+                    $("#kq").val("");
+                } else {
+                    $("#kq").val(a / b);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

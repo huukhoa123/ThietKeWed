@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    
+</body>
+</html>
+<style>
+body {
+  font-family: Arial;
+  background-color: #f5f7fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.container {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 400px;
+}
+h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+  color: #333;
+}
+input, select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+}
+#finish {
+  background-color: #007bff;
+  color: white;
+  margin-right: 10px;
+}
+#finish:hover {
+  background-color: #0056b3;
+}
+#clear {
+  background-color: #f44336;
+  color: white;
+}
+#clear:hover {
+  background-color: #c62828;
+}
+.radio-group {
+  margin-top: 5px;
+}
+.radio-group label {
+  display: inline-block;
+  font-weight: normal;
+  margin-right: 10px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h3>Personal Information</h3>
+
+  <form id="infoForm">
+    <label>Enter name *:</label>
+    <input type="text" id="name">
+
+    <label>Sex *:</label>
+    <div class="radio-group">
+      <label><input type="radio" name="sex" value="Male"> Male</label>
+      <label><input type="radio" name="sex" value="Female"> Female</label>
+    </div>
+
+    <label>Enter email address *:</label>
+    <input type="text" id="email">
+
+    <label>Enter birthday (MM/DD/YYYY) *:</label>
+    <input type="text" id="birthday">
+
+    <label>Enter street address (line 1) *:</label>
+    <input type="text" id="address">
+
+    <label>Enter city *:</label>
+    <input type="text" id="city">
+
+    <label>Select a region *:</label>
+    <select id="region">
+      <option value="">--Select--</option>
+      <option>North</option>
+      <option>South</option>
+      <option>Central</option>
+    </select>
+
+    <label>Enter 5-digit ZIP code *:</label>
+    <input type="text" id="zip">
+
+    <div style="text-align:center;">
+      <button type="button" id="finish">Finish</button>
+      <button type="button" id="clear">Clear</button>
+    </div>
+  </form>
+</div>
+
+<script>
+$(document).ready(function(){
+  $('#clear').click(function(){
+    $('#infoForm')[0].reset()
+  })
+
+  $('#finish').click(function(){
+    let name = $('#name').val().trim()
+    let sex = $('input[name="sex"]:checked').val()
+    let email = $('#email').val().trim()
+    let birthday = $('#birthday').val().trim()
+    let address = $('#address').val().trim()
+    let city = $('#city').val().trim()
+    let region = $('#region').val()
+    let zip = $('#zip').val().trim()
+
+    if(!name || !sex || !email || !birthday || !address || !city || !region || !zip){
+      alert('Vui lòng nhập đầy đủ các trường có dấu *')
+      return
+    }
+    let emailPattern = /^[^@.]+(\.[^@.]+)*@[^@.]+\.[^@.]+$/
+    if(!emailPattern.test(email)){
+      alert('Email không hợp lệ!')
+      return
+    }
+    let datePattern = /^(0?[1-9]|1[0-2])[\/\-](0?[1-9]|[12][0-9]|3[01])[\/\-](\d{4})$/
+    if(!datePattern.test(birthday)){
+      alert('Ngày sinh không hợp lệ! (MM/DD/YYYY)')
+      return
+    }
+    let year = parseInt(birthday.split(/[-\/]/)[2])
+    let currentYear = new Date().getFullYear()
+    if(year >= currentYear){
+      alert('Năm sinh phải nhỏ hơn năm hiện tại!')
+      return
+    }
+    if(!/^\d{5}$/.test(zip)){
+      alert('Zip code phải có đúng 5 chữ số!')
+      return
+    }
+    alert('Dữ liệu hợp lệ! Gửi form thành công!')
+  })
+})
+</script>
+
+</body>
+</html>

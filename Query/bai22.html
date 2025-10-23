@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thông Tin CV</title>
+  <style>
+    tr, td {
+      border: 1px solid black;
+      padding: 8px;
+    }
+    #preview {
+      display: none;
+      text-align: center;
+      margin-top: 10px;
+    }
+    #preview img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 3px solid #4CAF50;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      object-fit: cover;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    #preview img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    }
+
+    /* Khung hiển thị CV */
+    #cvResult {
+      display: none;
+      margin-top: 30px;
+      background: #f9f9f9;
+      border: 2px solid #4CAF50;
+      border-radius: 10px;
+      width: 400px;
+      padding: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+    #cvResult h2 {
+      color: #2e7d32;
+      margin-bottom: 5px;
+    }
+    .skill-bar {
+      width: 100%;
+      background: #ddd;
+      border-radius: 5px;
+      margin-bottom: 8px;
+    }
+    .skill-bar-inner {
+      height: 10px;
+      border-radius: 5px;
+    }
+  </style>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+  <table>
+    <tr>
+      <td>Họ và tên:</td>
+      <td><input type="text" id="name"></td>
+    </tr>
+    <tr>
+      <td>Điện Thoại:</td>
+      <td><input type="text" id="phone"></td>
+    </tr>
+    <tr>
+      <td>Email:</td>
+      <td><input type="text" id="email"></td>
+    </tr>
+    <tr>
+      <td>Ảnh Đại Diện:</td>
+      <td><input type="file" id="avatar" accept="image/*"></td>
+    </tr>
+    <tr>
+      <td>Địa Chỉ:</td>
+      <td><input type="text" id="address"></td>
+    </tr>
+    <tr>
+      <td>Nghề Nghiệp:</td>
+      <td><input type="text" id="job"></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <div id="preview"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>Kỹ năng:</td>
+      <td>
+        <div id="kynangList">
+          <div class="kynang-item">
+            Tên kỹ năng: <input type="text" class="tenkynang" placeholder="VD: NodeJS">
+            <br>
+            Mức độ: <input type="range" class="mucdo" min="0" max="100" value="50">
+          </div>
+        </div>
+        <a id="themKyNang" href="#">Thêm</a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">
+        <button type="button" id="dangky">Đăng ký</button>
+      </td>
+    </tr>
+  </table>
+
+  <div id="cvResult">
+    <div id="cvAvatar"></div>
+    <h2 id="cvName"></h2>
+    <p id="cvJob"></p>
+    <p id="cvAddress"></p>
+    <p id="cvEmail"></p>
+    <p id="cvPhone"></p>
+    <div id="cvSkills"></div>
+  </div>
+
+  <script>
+  $(document).ready(function() {
+
+    // Hiển thị ảnh xem trước
+    $("#avatar").change(function(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          $("#preview").html(`<img src="${e.target.result}" alt="Avatar">`).fadeIn();
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Thêm kỹ năng
+    $("#themKyNang").click(function(e) {
+      e.preventDefault();
+      const newSkill = `
+        <div class="kynang-item">
+          Tên kỹ năng: <input type="text" class="tenkynang" placeholder="VD: HTML, CSS...">
+          <br>
+          Mức độ: <input type="range" class="mucdo" min="0" max="100" value="50">
+          <a class="xoa" style="color:red; margin-left:10px;">Xóa</a>
+        </div>
+      `;
+      $("#kynangList").append(newSkill);
+    });
+
+    // Xóa kỹ năng
+    $(document).on("click", ".xoa", function() {
+      $(this).parent().remove();
+    });
+
+    // Khi nhấn "Đăng ký"
+    $("#dangky").click(function() {
+      const name = $("#name").val();
+      const phone = $("#phone").val();
+      const email = $("#email").val();
+      const address = $("#address").val();
+      const job = $("#job").val();
+      const avatarSrc = $("#preview img").attr("src");
+      const skills = [];
+
+      $("#kynangList .kynang-item").each(function() {
+        const ten = $(this).find(".tenkynang").val();
+        const mucdo = $(this).find(".mucdo").val();
+        if (ten.trim() !== "") skills.push({ ten, mucdo });
+      });
+
+      // Hiển thị thông tin
+      $("#cvAvatar").html(`<img src="${avatarSrc}" width="100" height="100" style="border-radius:50%; object-fit:cover;">`);
+      $("#cvName").text(name);
+      $("#cvJob").text("💼 " + job);
+      $("#cvAddress").text("🏠 " + address);
+      $("#cvEmail").text("📧 " + email);
+      $("#cvPhone").text("📞 " + phone);
+      $("#cvSkills").empty();
+
+      skills.forEach(s => {
+        $("#cvSkills").append(`
+          <p><b>${s.ten}</b> - ${s.mucdo}%</p>
+          <div class="skill-bar"><div class="skill-bar-inner" style="width:${s.mucdo}%; background:#4CAF50;"></div></div>
+        `);
+      });
+
+      $("#cvResult").fadeIn();
+      $("html, body").animate({ scrollTop: $("#cvResult").offset().top }, 500);
+    });
+  });
+  </script>
+</body>
+</html>

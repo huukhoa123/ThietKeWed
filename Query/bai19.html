@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Mua vé xem phim</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+    table { border-collapse: collapse; }
+    td { padding: 5px; }
+    .result {
+      margin-top: 20px;
+      border: 1px solid #999;
+      padding: 15px;
+      width: 300px;
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Mua vé xem phim</h2>
+
+<form id="formVe">
+  <table border="1" cellpadding="5">
+    <tr>
+      <td>Ngày chiếu</td>
+      <td><input type="date" id="ngay"></td>
+    </tr>
+    <tr>
+      <td>Phim</td>
+      <td>
+        <select id="phim">
+          <option value="">--Chọn phim--</option>
+          <option value="Tết Ở Làng Địa Ngục">Tết Ở Làng Địa Ngục</option>
+          <option value="Địa Đạo">Địa Đạo</option>
+          <option value="Tử Chiến Trên Không">Tử Chiến Trên Không</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>Suất chiếu</td>
+      <td>
+        <select id="suatchieu">
+          <option value="">--Chọn suất chiếu--</option>
+          <option value="9h–12h" data-gia="45000">9h–12h</option>
+          <option value="13h–16h" data-gia="55000">13h–16h</option>
+          <option value="17h–20h" data-gia="65000">17h–20h</option>
+          <option value="22h–24h" data-gia="35000">22h–24h</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>Phòng chiếu</td>
+      <td>
+        <select id="phong">
+          <option value="">--Chọn phòng--</option>
+          <option value="Đồng" data-gia="1.0">Đồng</option>
+          <option value="Bạc" data-gia="1.2">Bạc</option>
+          <option value="Vàng" data-gia="1.5">Vàng</option>
+          <option value="Kim Cương" data-gia="2.0">Kim Cương</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>Chọn chỗ ngồi</td>
+      <td>
+        <select id="ghe" multiple size="4">
+          <option value="Ghế 01">Ghế 01</option>
+          <option value="Ghế 02">Ghế 02</option>
+          <option value="Ghế 03">Ghế 03</option>
+          <option value="Ghế 04">Ghế 04</option>
+          <option value="Ghế 05">Ghế 05</option>
+          <option value="Ghế 06">Ghế 06</option>
+          <option value="Ghế 07">Ghế 07</option>
+          <option value="Ghế 08">Ghế 08</option>
+          <option value="Ghế 09">Ghế 09</option>
+          <option value="Ghế 10">Ghế 10</option>
+
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">
+        <button type="button" id="muave">Mua vé</button>
+      </td>
+    </tr>
+  </table>
+</form>
+
+<div id="thongtin" class="result" style="display:none;">
+  <h3>Thông tin vé</h3>
+  <p><b>Khách hàng:</b> Nguyễn Văn A</p>
+  <p id="infoPhim"></p>
+  <p id="infoSuat"></p>
+  <p id="infoPhong"></p>
+  <p id="infoGhe"></p>
+  <p id="infoGia"></p>
+  <p><b>Tổng tiền:</b> <span id="tongtien"></span> đ</p>
+</div>
+
+<script>
+$(document).ready(function(){
+  $("#muave").click(function(){
+    let phim = $("#phim").val();
+    let suatchieu = $("#suatchieu option:selected");
+    let phong = $("#phong option:selected");
+    let ghe = $("#ghe").val(); 
+
+    if(!phim || !suatchieu.val() || !phong.val() || !ghe || ghe.length == 0){
+      alert("Vui lòng chọn đầy đủ thông tin!");
+      return;
+    }
+
+
+    let giaSuat = parseFloat(suatchieu.data("gia"));
+    let heSoPhong = parseFloat(phong.data("gia"));
+    let tong = giaSuat * heSoPhong * ghe.length;
+
+
+    $("#infoPhim").html("<b>Phim:</b> " + phim);
+    $("#infoSuat").html("<b>Suất chiếu:</b> " + suatchieu.val());
+    $("#infoPhong").html("<b>Phòng chiếu:</b> " + phong.val());
+    $("#infoGhe").html("<b>Ghế:</b> " + ghe.join(", "));
+    $("#infoGia").html("<b>Giá vé 1 ghế:</b> " + (giaSuat * heSoPhong).toLocaleString() + " đ");
+    $("#tongtien").text(tong.toLocaleString());
+
+    $("#thongtin").slideDown();
+  });
+});
+</script>
+
+</body>
+</html>

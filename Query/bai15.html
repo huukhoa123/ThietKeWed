@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<style>
+body {
+  font-family: Arial;
+  margin: 30px;
+}
+
+.tab-container {
+  width: 500px;
+  border: 1px solid #ccc;
+}
+
+.tab-header {
+  background: #c7e26d;
+  overflow: hidden;
+}
+
+.tab-header button {
+  background: #3498db;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  cursor: pointer;
+  float: left;
+  margin: 4px 4px 0 0;
+  border-radius: 5px 5px 0 0;
+}
+
+.tab-header button.active {
+  background: white;
+  color: blue;
+  border-bottom: 1px solid white;
+}
+
+.tab-content {
+  border-top: none;
+  padding: 15px;
+  background: white;
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+</style>
+<body>
+    <div class="tab-container">
+    <div class="tab-header">
+        <button class="tab-link active" data-tab="tab1">THÔNG TIN CHÍNH</button>
+        <button class="tab-link" data-tab="tab2">HÌNH ẢNH</button>
+        <button class="tab-link" data-tab="tab3">SEO</button>
+    </div>
+
+    <div id="tab1" class="tab-content active">
+        Tab thông tin chính
+    </div>
+    <div id="tab2" class="tab-content">
+        Tab hình ảnh
+    </div>
+    <div id="tab3" class="tab-content">
+        Tab SEO
+    </div>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+        $('.tab-link').click(function(){
+            var tab_id = $(this).data('tab')
+            $('.tab-link').removeClass('active')
+            $('.tab-content').removeClass('active')
+            $(this).addClass('active')
+            $('#' + tab_id).addClass('active')
+        })
+        })
+    </script>
+
+</body>
+</html>

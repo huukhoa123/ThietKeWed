@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chuyển hướng đến đường link</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h2>Nhập link và nhấn Submit để chuyển hướng:</h2>
+
+  <form id="linkForm">
+    <input type="text" id="linkInput" placeholder="Nhập đường link">
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    $(document).ready(function() {
+      $("#linkForm").submit(function() {
+        let link = $("#linkInput").val();
+
+        if (link == "") {
+          alert("link");
+          return;
+        }
+        if (confirm("Ok để chuyển hướng")) {
+          window.location.href = link;
+        } else {
+          alert("Hủy chuyển hướng");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
