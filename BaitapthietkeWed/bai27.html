@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            background-color: lightgreen;
+            border: 2px solid black;
+            margin: auto;
+            width: 250px;
+            text-align: center;
+        }
+        td{
+            border: 2px solid black;
+        }
+        button{
+            border-radius: 10px;
+        }
+        </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td> So luong </td>
+            <td>Don gia</td>
+            <td>Tong</td>
+            <td>Chuc Nang</td>
+            
+        </tr>
+        <tr>
+            <td><input type="text" value="2"></td>
+            <td><input type="text" value="1000000"></td>
+            <td><input type="text" value="2000000"></td>
+            <td><button onclick="Xoa(this)">Xóa</button></td>
+        </tr>
+        <tr>
+            <td><input type="text" value="1"></td>
+            <td><input type="text" value="500000"></td>
+            <td><input type="text" value="500000"></td>
+            <td><button onclick="Xoa(this)">Xóa</button></td>
+        </tr>
+    </table>
+    <script>
+        function Xoa(button){
+            const row=button.parentNode.parentNode;
+            row.remove();
+        }
+      
+ </script> 
+
+    
+</body>
+</html>

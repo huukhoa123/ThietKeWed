@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dao nguoc so nguyen</title>
+</head>
+<body>
+    <script>
+        var a=prompt("Nhap so thu nguyen: ");
+        var reversed = 0;
+        while (a != 0) {
+            var digit = a % 10;
+            reversed = reversed * 10 + digit;
+            a = Math.floor(a / 10);
+        }
+        alert("So dao nguoc la: " + reversed);
+
+        
+   
+    </script>
+</body>
+</html>

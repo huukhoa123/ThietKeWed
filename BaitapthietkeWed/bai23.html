@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <title>Tính lương tháng</title>
+</head>
+<body>
+  <h2>Tính lương tháng</h2>
+
+  <form>
+    <table border="1" cellpadding="5" cellspacing="0">
+      <tr>
+        <td>Lương</td>
+        <td><input type="number" id="luong" value="1000000"></td>
+      </tr>
+      <tr>
+        <td>Hệ số lương</td>
+        <td><input type="number" id="heso" value="3.2" step="0.1"></td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <input type="button" value="Tính lương tháng" onclick="tinhLuong()">
+        </td>
+      </tr>
+      <tr>
+        <td>Lương tháng</td>
+        <td><input type="text" id="ketqua" readonly></td>
+      </tr>
+    </table>
+  </form>
+  <script >
+    function tinhLuong() {
+ 
+  var luong = document.getElementById("luong").value;
+  var heso = document.getElementById("heso").value;
+  var luongthang = luong * heso;
+  document.getElementById("ketqua").value = luongthang;
+}
+  </script>
+</body>
+</html>

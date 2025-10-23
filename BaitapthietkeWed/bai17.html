@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Chuyển nhị phân sang thập phân</title>
+</head>
+<body>
+  <script>
+    let n = prompt("Nhập số nhị phân:");
+    let dec = 0;
+
+
+    if (!/^[01]+$/.test(n)) {
+      alert("Lỗi: chỉ được nhập 0 và 1!");
+    } else {
+      for (let i = 0; i < n.length; i++) {
+        let bit = n[n.length - 1 - i];
+        dec += bit * Math.pow(2, i);
+      }
+      alert(n + "₂ = " + dec + "₁₀");
+    }
+  </script>
+</body>
+</html>

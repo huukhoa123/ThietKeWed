@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lich am</title>
+    <style>
+    h1{
+        text-align: center;
+        background-color: bisque;
+    }
+    table{
+        margin: auto;
+        border: 1px solid black;
+        border-collapse: collapse;
+        width: 300px;
+        height: 50px;
+        text-align: center;
+        background-color: aquamarine;
+        font-size: 20px;
+    }
+    button{
+        width: 50px;
+        height: 30px;
+        font-size: 20px;
+        background-color: coral;
+    }
+
+    </style>
+</head>
+<body>
+    <h1>
+        TINH CAN CHI CUA NGAY AM LICH
+    </h1>
+
+  <table>
+>
+    <tr>
+      <td>Năm dương lịch</td>
+      <td></td>
+      <td>Căn chi năm âm lịch</td>
+    </tr>
+    <tr>
+      <td><input type="text" id="nam"></td>
+      <td><button onclick="tinhCanChi()">---></button></td>
+      <td><input type="text" id="ketqua" readonly></td>
+    </tr>
+  </table>
+  <script>
+      function tinhCanChi() {
+            let nam = document.getElementById("nam").value.trim();
+
+
+            let can = ["Canh", "Tân", "Nhâm", "Quý", "Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ"];
+            let chi = ["Thân", "Dậu", "Tuất", "Hợi", "Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi"];
+
+            let canIndex = nam % 10;
+            let chiIndex = nam % 12;
+
+            let ketqua = can[canIndex] + " " + chi[chiIndex];
+            document.getElementById("ketqua").value = ketqua;
+        }
+    </script>
+</body>
+</html>

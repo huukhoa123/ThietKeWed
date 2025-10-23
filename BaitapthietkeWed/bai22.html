@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>may tinh</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>1st Number :</td>
+            <td><input type="text"id="one"></td>
+        </tr>
+        <tr>
+            <td>2nd Number :</td>
+            <td><input type="text"id="two"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="Mutiply" onclick="mut()"></td>
+            <td><input type="button"value="Divide" onclick="div()"></td>
+        </tr>
+            
+    </table>
+    <p id="result"></p>
+    <script>
+        function mut(){
+            var a=document.getElementById("one").value;
+            var b=document.getElementById("two").value;
+            let Mutiply=a*b;
+            document.getElementById("result").innerHTML="Result= "  +Mutiply;
+        }
+        function div(){
+            var a=document.getElementById("one").value;
+            var b=document.getElementById("two").value;
+            let Divide=a/b;
+            document.getElementById("result").innerHTML="Result= "  +Divide;
+        }
+    </script>
+</body>
+</html>

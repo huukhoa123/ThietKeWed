@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xuất thứ trong tuần</title>
+    <style>
+      table {
+        margin: 40px auto;
+        border: 2px solid blue;
+        background-color: #f8d7da;
+        border-collapse: collapse;
+        width: 500px;
+        text-align: center;
+      }
+      td {
+        border: 1px solid blue;
+        padding: 8px;
+      }
+      h3 {
+        margin: 0;
+      }
+      button {
+        padding: 5px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td colspan="3"><h3>Nhập ngày tháng năm để xuất thứ</h3></td>
+      </tr>
+      <tr>
+        <td>
+          Ngày <input type="number" id="ngay" value="12" min="1" max="31" />
+        </td>
+        <td>
+          Tháng Select:
+          <input type="number" id="thang" value="1" min="1" max="12" />
+        </td>
+        <td>Năm <input type="number" id="nam" value="2015" /></td>
+      </tr>
+      <tr>
+        <td colspan="3"><button onclick="xuatthu()">Xuất thứ</button></td>
+      </tr>
+      <tr>
+        <td colspan="3"><p id="ketqua"></p></td>
+      </tr>
+    </table>
+
+    <script>
+      function xuatthu() {
+        let ngay = parseInt(document.getElementById("ngay").value);
+        let thang = parseInt(document.getElementById("thang").value);
+        let nam = parseInt(document.getElementById("nam").value);
+
+        let date = new Date(nam, thang - 1, ngay);
+        let thu = date.getDay();
+
+        let tenThu = [
+          "Chủ nhật",
+          "Thứ 2",
+          "Thứ 3",
+          "Thứ 4",
+          "Thứ 5",
+          "Thứ 6",
+          "Thứ 7",
+        ];
+
+        document.getElementById(
+          "ketqua"
+        ).innerHTML = `${tenThu[thu]} Ngày ${ngay} Tháng ${thang} Năm ${nam}`;
+      }
+    </script>
+  </body>
+</html>
+```
